@@ -1,0 +1,2 @@
+# terbiyesiz
+Türkçe Discord Botu
