@@ -139,13 +139,11 @@ bot.on('message', msg => {
         .addField("Soru", `Bir şeker bir çaya ne demiş?`)
         .setDescription(`Hadi Bil`)
         .setFooter("TerbiyesizBOT | Bilmece")
-        .setTimestamp()
       const botsoru2 = new Discord.RichEmbed()
         .setColor("GREEN")
         .setDescription("Demek bilmece istiyorsun özelden yolladım hadi bil :postbox:")
         .setAuthor(msg.author.username, msg.author.avatarURL)
         .setFooter("TerbiyesizBOT | Bilmece")
-        .setTimestamp()
         msg.channel.send(botsoru2).then(msg.author.send(soru2));
     }
   });
@@ -158,7 +156,6 @@ bot.on('message', msg => {
         .setDescription("Cevabı Söylüyorum")
         .addField("Cevap: 4",)
         .setFooter("TerbiyesizBOT | Bilmece")
-        .setTimestamp()
         msg.channel.send(cevap1);
     }
   });
@@ -169,7 +166,6 @@ bot.on('message', msg => {
         .setDescription("Cevabı Söylüyorum")
         .addField("Cevap: Senin İçin Eriyorum",)
         .setFooter("TerbiyesizBOT | Bilmece")
-        .setTimestamp()
         msg.channel.send(cevap2);
     }
   });  
