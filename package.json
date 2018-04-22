@@ -1,10 +1,10 @@
 {
-  "name": "terbiyesiz.js",
+  "name": "terbiyesiz",
   "version": "1.0.0",
   "description": "Terbiyesiz Discord Sunucusunun Botu",
   "main": "bot.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node bot.js"
   },
   "author": "Enes Onur Ata#9427",
   "license": "ISC",
