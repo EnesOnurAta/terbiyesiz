@@ -125,7 +125,7 @@ bot.on('message', msg => {
       const botsoru1 = new Discord.RichEmbed()
         .setColor("GREEN")
         .setDescription("Demek bilmece istiyorsun özelden yolladım hadi bil :postbox:")
-        .setAuthor(msg.author.username, msg.author.avatarURL)
+        .setAuthor("Cevabını bilmiyorsan : ${prefix}bilmece cevap 1")
         .setFooter("TerbiyesizBOT | Bilmece")
         .setTimestamp()
         msg.channel.send(botsoru1).then(msg.author.send(soru1));
@@ -164,7 +164,7 @@ bot.on('message', msg => {
   });
   bot.on('message', msg => {
     if (msg.content === prefix + 'bilmece cevap 2') {
-      const cevap1 = new Discord.RichEmbed()
+      const cevap2 = new Discord.RichEmbed()
         .setColor("GREEN")
         .setDescription("Cevabı Söylüyorum")
         .addField("Cevap: Senin İçin Eriyorum",)
