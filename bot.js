@@ -59,7 +59,7 @@ bot.on('ready', () => {
   }); // Aynı zamanda STREAMING: YAYINDA: WATCHING: İZLİYOR: DND: RAHATSIZ ETMEYİN GİBİ TERİMLERDE VARDIR
 })
 
-/* Yeniden Başlatma */
+/* Yeniden Başlatma
 bot.on('message', msg => {
   if (msg.content.toLowerCase() === prefix + 'yeniden başlat') {
   if (msg.author.id !== '274551537139712001') {
@@ -69,7 +69,7 @@ bot.on('message', msg => {
     console.log(`BOT: Bot yeniden başlatılıyor...`);
     process.exit(0);
   })
- }}}); 
+ }}}); */
 
 /* Yazdırma */
 bot.on('message', msg => {
@@ -207,7 +207,7 @@ bot.on('message', msg => {
 /* Giriş Çıkış */
 bot.on('guildMemberAdd', member => {
   let guild = member.guild;
-  let joinRole = guild.roles.find('name', 'Sapık'); // Burada girişte verilcek rolu seçelim.
+  let joinRole = guild.roles.find('name', 'SAPIK'); // Burada girişte verilcek rolu seçelim.
   member.addRole(joinRole); // seçtiğimiz rolu verelim.
 
   const channel = member.guild.channels.find('name', 'terbiyesiz'); // burda ise kanalı belirleyelim hangi kanala atsın ben mod-log dedim.
@@ -234,82 +234,181 @@ bot.on('guildMemberRemove', member => {
 });
 
 /* Sohbet Temizleme */
-exports.run = function(client, message, args) {
-  if (!message.guild) {
-  const ozelmesajuyari = new Discord.RichEmbed()
-  .setColor(0xFF0000)
-  .setTimestamp()
-  .setAuthor(message.author.username, message.author.avatarURL)
-  .addField(':warning: Uyarı :warning:', '`temizle` adlı komutu özel mesajlarda kullanamazsın.')
-  return message.author.sendEmbed(ozelmesajuyari); }
-  if (!message.guild.member(client.user).hasPermission("MANAGE_MESSAGES")) {
-	const botunmesajyonet = new Discord.RichEmbed()
+bot.on('message', msg => {
+  if (msg.content.toLowerCase() === prefix + 'temizle') {
+    if (msg.channel.type === 'dm') {
+      const ozelmesajuyari = new Discord.RichEmbed()
     .setColor(0xFF0000)
     .setTimestamp()
-    .setAuthor(message.author.username, message.author.avatarURL)
-    .addField(':warning: Uyarı :warning:', 'Mesajları silebilmem için `Mesajları Yönet` yetkisine sahip olmalıyım.')
-    return message.author.sendEmbed(botunmesajyonet);
-  }
-  let messagecount = parseInt(args.join(' '));
-  message.channel.fetchMessages({
-    limit: messagecount
-  }).then(messages => message.channel.bulkDelete(messages));
-    const sohbetsilindi = new Discord.RichEmbed()
+    .setAuthor(msg.author.username, msg.author.avatarURL)
+    .addField(':warning: Uyarı :warning:', 'Bu komutu özel mesajlarda kullanamazsın.')
+    msg.author.sendEmbed(ozelmesajuyari); }
+      if (msg.channel.type !== 'dm') {
+        if (!msg.member.hasPermission("MANAGE_MESSAGES")) {
+          if (msg.author.id !== '274551537139712001') {
+            const mesajlariyonet = new Discord.RichEmbed()
+          .setColor(0xFF0000)
+          .setTimestamp()
+          .setAuthor(msg.author.username, msg.author.avatarURL)
+          .addField(':warning: Uyarı :warning:', 'Bu komutu kulllanmak için `Mesajları Yönet` iznine sahip olmalısın.')
+          return msg.author.sendEmbed(mesajlariyonet);
+      }}
+      msg.channel.bulkDelete(100);
+      msg.channel.bulkDelete(100);
+      msg.channel.bulkDelete(100);
+      msg.channel.bulkDelete(100);
+      msg.channel.bulkDelete(100);
+      msg.channel.bulkDelete(100);
+      msg.channel.bulkDelete(100);
+      msg.channel.bulkDelete(100);
+      msg.channel.bulkDelete(100);
+      msg.channel.bulkDelete(100); //1000 mesaj gg
+      const sohbetsilindi = new Discord.RichEmbed()
     .setColor(0x00AE86)
     .setTimestamp()
     .addField('Eylem:', 'Sohbet silme')
-    .addField('Yetkili:', message.author.username)
-    .addField('Silinen mesaj sayısı:', messagecount)
+    .addField('Yetkili:', msg.author.username)
     .addField('Sonuç:', `Başarılı`)
-    return message.channel.sendEmbed(sohbetsilindi);
-    console.log("Sohbet " + message.member + " tarafından silindi!");
-};
+    return msg.channel.sendEmbed(sohbetsilindi);
+      console.log("Sohbet " + msg.member + " tarafından silindi!");
+}}});
 
-exports.conf = {
-  enabled: true,
-  guildOnly: true,
-  aliases: [],
-  permLevel: 2
-};
+/* Yeniden Başlatma */
+bot.on('message', msg => {
+  if (msg.content.toLowerCase() === prefix + 'yeniden başlat') {
+    if (msg.author.id !== '274551537139712001') {
+      const blnmyn = new Discord.RichEmbed()
+    .setColor(0xFF0000)
+    .setTimestamp()
+    .setAuthor(msg.author.username, msg.author.avatarURL)
+    .addField(':warning: Uyarı :warning:', 'Bu komutu kullanabilmek için `Bot Sahibi` yetkisine sahip olmalısın.')
+    return msg.channel.sendEmbed(blnmyn);
+    }
+    process.exit(1).catch(console.error);
+  }
+});
 
-exports.help = {
-  name: 'temizle',
-  description: 'Belirlenen miktar mesajı siler.',
-  usage: 'temizle <temizlenecek mesaj sayısı>'
-};
-
-/* Botu Yeniden Başlatma */
-const moment = require('moment');
-
-exports.run = (client, message, args) => {
-message.channel.sendMessage('Botun yeniden başlatılmasına onay veriyorsanız 30 saniye içinde evet yazın.')
-.then(() => {
-  message.channel.awaitMessages(response => response.content === "evet", {
-    max: 1,
-    time: 30000,
-    errors: ['time'],
-  })
-  .then((collected) => {
-      message.channel.sendMessage(`Bot yeniden başlatılıyor...`).then(message => {
-      console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Bot yeniden başlatılıyor...`)
+/* Bot Restart */
+bot.on('message', msg => {
+  if (msg.content.toLowerCase() === prefix + 'restart') {
+    if (msg.author.id !== '274551537139712001') {
+       const botsahib = new Discord.RichEmbed()
+    .setColor(0xFF0000)
+    .setTimestamp()
+    .setAuthor(msg.author.username, msg.author.avatarURL)
+    .addField(':warning: Uyarı :warning:', 'Bu komutu kullanabilmek için `Bot Sahibi` yetkisine sahip olmalısın.')
+    return msg.channel.sendEmbed(botsahib);
+    }
+    bot.channels.get(ayarlar.botdurum).sendMessage("@everyone Görevli yeniden başlatılıyor kesintiden dolayı özür dileriz...").then(message => {
+      console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Gönderilen mesaj: ${message.content}`)
       process.exit(1);
     }).catch(console.error)
-    })
-    .catch(() => {
-      message.channel.sendMessage('Yeniden başlatma işlemi iptal edildi.');
-    });
+  }
 });
-};
 
-exports.conf = {
-  enabled: true,
-  guildOnly: false,
-  aliases: [],
-  permLevel: 4
-};
+/* Borun bağlantısı kopunca (disconnect) */
+bot.on("disconnected", function () {
+	console.log("BOT: Sunucu ile bağlantı koptu!");
+	process.exit(1);
+});
 
-exports.help = {
-  name: 'reboot',
-  description: 'Botu yeniden başlatır.',
-  usage: 'reboot'
-};
+/* yardım */
+bot.on('message', msg => {
+  if (msg.content.toLowerCase() === prefix + 'yardım') {
+    if (msg.channel.type !== 'dm') {
+      const ozelmesajkontrol = new Discord.RichEmbed()
+    .setColor(0x00AE86)
+    .setTimestamp()
+    .setAuthor(msg.author.username, msg.author.avatarURL)
+    .addField(msg.author.username, 'Özel mesajlarını kontrol et. :postbox:');
+    msg.channel.sendEmbed(ozelmesajkontrol) }
+      msg.author.sendMessage('Sanırım yardım istedin? ' + prefix + 'komutlar yazarak komutlara bakabilirsin Başka bir konuda yardım istiyorsan moderatörlerimiz sana yardımcı olacaktır.').then(message => console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Gönderilen mesaj: ${message.content}`)).catch(console.error);
+  }
+});
+
+/* komutlar */
+bot.on('message', msg => {
+  if (msg.content.toLowerCase() === prefix + 'komutlar') {
+    if (msg.channel.type !== 'dm') {
+      const ozelmesajkontrol = new Discord.RichEmbed()
+    .setColor(0x00AE86)
+    .setTimestamp()
+    .setAuthor(msg.author.username, msg.author.avatarURL)
+    .addField(msg.author.username, 'Özel mesajlarını kontrol et. :postbox:');
+    msg.channel.sendEmbed(ozelmesajkontrol) }
+      msg.author.sendMessage('`Komutlar:\n\n' + prefix + 'yardım\n' + prefix + 'komutlar\n' + prefix + 'bilgi\n' + prefix + 'ping\n' + prefix + 'kurallar\n' + prefix + 'davet\n' + prefix + 'botu ekle\n`').then(message => console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Gönderilen mesaj: ${message.content}`)).catch(console.error);
+  }
+});
+
+/* Botun sunucusu olan TerbiyesizSunucu nun davet linkini atar*/
+bot.on('message', msg => {
+  if (msg.content.toLowerCase() === prefix + 'davet') {
+    if (msg.channel.type !== 'dm') {
+      const ozelmesajkontrol = new Discord.RichEmbed()
+    .setColor(0x00AE86)
+    .setTimestamp()
+    .setAuthor(msg.author.username, msg.author.avatarURL)
+    .addField(msg.author.username, 'Özel mesajlarını kontrol et. :postbox:');
+    msg.channel.sendEmbed(ozelmesajkontrol) }
+      msg.author.sendMessage("DAVET: https://discordapp.com/api/oauth2/authorize?client_id=437270636910477313&permissions=8&scope=bot").then(message => console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Gönderilen mesaj: ${message.content}`)).catch(console.error);
+  }
+});
+
+/* Botu Ekle */
+bot.on('message', msg => {
+  if (msg.content.toLowerCase() === prefix + 'botu ekle') {
+    if (msg.channel.type !== 'dm') {
+      const ozelmesajkontrol = new Discord.RichEmbed()
+    .setColor(0x00AE86)
+    .setTimestamp()
+    .setAuthor(msg.author.username, msg.author.avatarURL)
+    .addField(msg.author.username, 'Özel mesajlarını kontrol et. :postbox:');
+    msg.channel.sendEmbed(ozelmesajkontrol) }
+      msg.author.sendMessage("BOTU EKLE: https://discordapp.com/api/oauth2/authorize?client_id=437270636910477313&permissions=8&scope=bot").then(message => console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Gönderilen mesaj: ${message.content}`)).catch(console.error);
+  }
+});
+
+/* Bot davet ingilizçe */
+bot.on('message', msg => {
+  if (msg.content.toLowerCase() === prefix + 'invite') {
+    if (msg.channel.type !== 'dm') {
+      const ozelmesajkontrol = new Discord.RichEmbed()
+    .setColor(0x00AE86)
+    .setTimestamp()
+    .setAuthor(msg.author.username, msg.author.avatarURL)
+    .addField(msg.author.username, 'Özel mesajlarını kontrol et. :postbox:');
+    msg.channel.sendEmbed(ozelmesajkontrol) }
+      msg.author.sendMessage("Link: https://discordapp.com/oauth2/authorize?client_id=288310817810546699&scope=bot&permissions=401812495").then(message => console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Gönderilen mesaj: ${message.content}`)).catch(console.error);
+  }
+});
+
+/* Bot Hakkında Bilgi */
+bot.on('message', msg => {
+  if (msg.content.toLowerCase() === prefix + 'bilgi') {
+    if (msg.channel.type !== 'dm') {
+      const ozelmesajkontrol = new Discord.RichEmbed()
+    .setColor(0x00AE86)
+    .setTimestamp()
+    .setAuthor(msg.author.username, msg.author.avatarURL)
+    .addField(msg.author.username, 'Özel mesajlarını kontrol et. :postbox:');
+    msg.channel.sendEmbed(ozelmesajkontrol) }
+      msg.author.sendMessage('Bot sürümü: v' + ayarlar.surum + ' Yapımcı: Serhan (Black Monday) **Sohbet ve Oyun**\n\n_**BOTU EKLEMEK İÇİN LİNK:**_\n\nhttps://discordapp.com/oauth2/authorize?client_id=288310817810546699&scope=bot&permissions=401812495 \n\n_**Linkler:**_\n\n**Sohbet ve Oyun** sunucusunun davet linki: https://discord.gg/GEeGjnH \nBotun davet linki: https://discordapp.com/oauth2/authorize?client_id=288310817810546699&scope=bot&permissions=401812495 \n\n**:copyright: 2017 Sohbet ve Oyun**').then(message => console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Gönderilen mesaj: ${message.content}`)).catch(console.error);
+  }
+});
+
+/* Bot Sunucuya Girince */
+const girismesaj = [
+  '**TerbiyesizBOT sunucunuza eklendi!**',
+  '**TerbiyesizBOT** sunucunuzdaki insanlara kolaylıklar sağlar.',
+  'Bot Enes Onur Ata tarafından geliştirilmektedir.',
+  'Botumuzun özelliklerini öğrenmek için !yardım komutunu kullanabilirsin.',
+  '**ÖNEMLİ:** Botun kullanması için terbiyesiz kanalı açın',
+  '',
+  `**TerbiyesizBOT Resmî Discord Sunucusu** https://discord.gg/GvfuXmE`,
+  `**TerbiyesizBOT Davet Link** https://discordapp.com/api/oauth2/authorize?client_id=437270636910477313&permissions=8&scope=bot`
+]
+
+bot.on('guildCreate', guild => {
+    const generalChannel = guild.defaultChannel
+    generalChannel.sendMessage(girismesaj)
+})
