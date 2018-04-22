@@ -234,7 +234,6 @@ bot.on('guildMemberRemove', member => {
 });
 
 /* Sohbet Temizleme */
-const Discord = require('discord.js');
 exports.run = function(client, message, args) {
   if (!message.guild) {
   const ozelmesajuyari = new Discord.RichEmbed()
