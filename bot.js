@@ -205,12 +205,12 @@ bot.on('message', msg => {
   });*/
 
 /* Giriş Çıkış */
-client.on('guildMemberAdd', member => {
+bot.on('guildMemberAdd', member => {
   let guild = member.guild;
   let joinRole = guild.roles.find('name', 'Sapık'); // Burada girişte verilcek rolu seçelim.
   member.addRole(joinRole); // seçtiğimiz rolu verelim.
 
-  const channel = member.guild.channels.find('name', 'Terbiyesiz'); // burda ise kanalı belirleyelim hangi kanala atsın ben mod-log dedim.
+  const channel = member.guild.channels.find('name', 'terbiyesiz'); // burda ise kanalı belirleyelim hangi kanala atsın ben mod-log dedim.
   if (!channel) return;
   const embed = new Discord.RichEmbed()
   .setColor('RANDOM')
@@ -221,8 +221,8 @@ client.on('guildMemberAdd', member => {
   channel.sendEmbed(embed); // belirlediğimiz kanala mesaj gönderelim.
 });
 
-client.on('guildMemberRemove', member => {
-  const channel = member.guild.channels.find('name', 'Terbiyesiz');
+bot.on('guildMemberRemove', member => {
+  const channel = member.guild.channels.find('name', 'terbiyesiz');
   if (!channel) return;
   const embed = new Discord.RichEmbed()
   .setColor('RANDOM')
