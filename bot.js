@@ -51,13 +51,20 @@ bot.on('ready', () => {
   console.log(`Yapımcısı Enes Onur Ata olan ${bot.user.username} botu sunucuya katıldı!`);
 });
 
-/* Botun Oynuyor Kısmı */
+/* Botun Oynuyor Kısmı
 bot.on('ready', () => {
   bot.user.setStatus("STREAMING"); // Aynı zamanda STREAMING: YAYINDA: WATCHING: İZLİYOR: DND: RAHATSIZ ETMEYİN GİBİ TERİMLERDE VARDIR
   bot.user.setActivity('+yardım | TerbiyesizBOT', {
     type: "STREAMING"
   }); // Aynı zamanda STREAMING: YAYINDA: WATCHING: İZLİYOR: DND: RAHATSIZ ETMEYİN GİBİ TERİMLERDE VARDIR
-})
+}) */
+
+bot.on('ready', () => {
+  bot.user.setStatus("PLAYING"); 
+  bot.user.setActivity('Botun Oynuyor Kısmı', {
+    type: "PLAYING"
+  }); 
+}) 
 
 /* Yeniden Başlatma
 bot.on('message', msg => {
