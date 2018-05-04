@@ -1,10 +1,10 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
-var prefix = '+';
+var prefix = 'zap$';
 
 bot.on('message', msg => {
   if (msg.content === prefix + 'ping') {
-    msg.reply(`**${bot.ping}** pong`);
+    msg.reply(`**${bot.ping}**ms gecikme`);
   }
   if (msg.content === prefix + 'yardım') {
     const embed = new Discord.RichEmbed()
@@ -61,7 +61,7 @@ bot.on('ready', () => {
 
 bot.on('ready', () => {
   bot.user.setStatus("PLAYING"); 
-  bot.user.setActivity('Botun Oynuyor Kısmı', {
+  bot.user.setActivity('Zappara BOT', 'Yardım Komutu: zap$yardım', {
     type: "PLAYING"
   }); 
 }) 
@@ -132,7 +132,7 @@ bot.on('message', msg => {
       const botsoru1 = new Discord.RichEmbed()
         .setColor("GREEN")
         .setDescription("Demek bilmece istiyorsun özelden yolladım hadi bil :postbox:")
-        .setAuthor("Cevabını bilmiyorsan : ${prefix}bilmece cevap 1")
+        .setAuthor("msg.author.username, msg.author.avatarURL")
         .setFooter("TerbiyesizBOT | Bilmece")
         .setTimestamp()
         msg.channel.send(botsoru1).then(msg.author.send(soru1));
@@ -214,10 +214,10 @@ bot.on('message', msg => {
 /* Giriş Çıkış */
 bot.on('guildMemberAdd', member => {
   let guild = member.guild;
-  let joinRole = guild.roles.find('name', 'SAPIK'); // Burada girişte verilcek rolu seçelim.
+  let joinRole = guild.roles.find('name', 'Üye'); // Burada girişte verilcek rolu seçelim.
   member.addRole(joinRole); // seçtiğimiz rolu verelim.
 
-  const channel = member.guild.channels.find('name', 'terbiyesiz'); // burda ise kanalı belirleyelim hangi kanala atsın ben mod-log dedim.
+  const channel = member.guild.channels.find('name', 'zappara'); // burda ise kanalı belirleyelim hangi kanala atsın ben mod-log dedim.
   if (!channel) return;
   const embed = new Discord.RichEmbed()
   .setColor('RANDOM')
@@ -229,7 +229,7 @@ bot.on('guildMemberAdd', member => {
 });
 
 bot.on('guildMemberRemove', member => {
-  const channel = member.guild.channels.find('name', 'terbiyesiz');
+  const channel = member.guild.channels.find('name', 'zappara');
   if (!channel) return;
   const embed = new Discord.RichEmbed()
   .setColor('RANDOM')
@@ -257,7 +257,7 @@ bot.on('message', msg => {
           .setColor(0xFF0000)
           .setTimestamp()
           .setAuthor(msg.author.username, msg.author.avatarURL)
-          .addField(':warning: Uyarı :warning:', 'Bu komutu kulllanmak için `Mesajları Yönet` iznine sahip olmalısın.')
+          .addField(':warning: Uyarı :warning:', 'Bu komutu kullanmak için `Mesajları Yönet` iznine sahip olmalısın.')
           return msg.author.sendEmbed(mesajlariyonet);
       }}
       msg.channel.bulkDelete(100);
@@ -278,6 +278,7 @@ bot.on('message', msg => {
     .addField('Sonuç:', `Başarılı`)
     return msg.channel.sendEmbed(sohbetsilindi);
       console.log("Sohbet " + msg.member + " tarafından silindi!");
+      console.log("1000 mesaj gg oldu :)");
 }}});
 
 /* Yeniden Başlatma */
@@ -347,7 +348,7 @@ bot.on('message', msg => {
   }
 });
 
-/* Botun sunucusu olan TerbiyesizSunucu nun davet linkini atar*/
+/* Botun sunucusu olan Zappara | www.zappara.cf nin davet linkini atar*/
 bot.on('message', msg => {
   if (msg.content.toLowerCase() === prefix + 'davet') {
     if (msg.channel.type !== 'dm') {
@@ -371,7 +372,7 @@ bot.on('message', msg => {
     .setAuthor(msg.author.username, msg.author.avatarURL)
     .addField(msg.author.username, 'Özel mesajlarını kontrol et. :postbox:');
     msg.channel.sendEmbed(ozelmesajkontrol) }
-      msg.author.sendMessage("BOTU EKLE: https://discordapp.com/api/oauth2/authorize?client_id=437270636910477313&permissions=8&scope=bot").then(message => console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Gönderilen mesaj: ${message.content}`)).catch(console.error);
+      msg.author.sendMessage("BOTU EKLE: https://discordapp.com/oauth2/authorize?client_id=437270636910477313&permissions=8&response_type=code&scope=bot%20guilds.join%20guilds").then(message => console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Gönderilen mesaj: ${message.content}`)).catch(console.error);
   }
 });
 
@@ -385,7 +386,7 @@ bot.on('message', msg => {
     .setAuthor(msg.author.username, msg.author.avatarURL)
     .addField(msg.author.username, 'Özel mesajlarını kontrol et. :postbox:');
     msg.channel.sendEmbed(ozelmesajkontrol) }
-      msg.author.sendMessage("Link: https://discordapp.com/oauth2/authorize?client_id=288310817810546699&scope=bot&permissions=401812495").then(message => console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Gönderilen mesaj: ${message.content}`)).catch(console.error);
+      msg.author.sendMessage("Link: https://discordapp.com/oauth2/authorize?client_id=437270636910477313&permissions=8&response_type=code&scope=bot%20guilds.join%20guilds").then(message => console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Gönderilen mesaj: ${message.content}`)).catch(console.error);
   }
 });
 
@@ -399,23 +400,7 @@ bot.on('message', msg => {
     .setAuthor(msg.author.username, msg.author.avatarURL)
     .addField(msg.author.username, 'Özel mesajlarını kontrol et. :postbox:');
     msg.channel.sendEmbed(ozelmesajkontrol) }
-      msg.author.sendMessage('Bot sürümü: v' + ayarlar.surum + ' Yapımcı: Serhan (Black Monday) **Sohbet ve Oyun**\n\n_**BOTU EKLEMEK İÇİN LİNK:**_\n\nhttps://discordapp.com/oauth2/authorize?client_id=288310817810546699&scope=bot&permissions=401812495 \n\n_**Linkler:**_\n\n**Sohbet ve Oyun** sunucusunun davet linki: https://discord.gg/GEeGjnH \nBotun davet linki: https://discordapp.com/oauth2/authorize?client_id=288310817810546699&scope=bot&permissions=401812495 \n\n**:copyright: 2017 Sohbet ve Oyun**').then(message => console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Gönderilen mesaj: ${message.content}`)).catch(console.error);
+      msg.author.sendMessage('Bot sürümü: v' + ayarlar.surum + ' Yapımcı: Enes Onur Ata#9427 **Zappara**\n\n_**BOTU EKLEMEK İÇİN LİNK:**_\n\nhttps://discordapp.com/oauth2/authorize?client_id=437270636910477313&permissions=8&response_type=code&scope=bot%20guilds.join%20guilds\n\n_**Linkler:**_\n\n**Zappara** sunucusunun davet linki: https://discord.gg/GEeGjnH \nBotun davet linki: https://discordapp.com/oauth2/authorize?client_id=437270636910477313&permissions=8&response_type=code&scope=bot%20guilds.join%20guilds\n\n**:copyright: 2018 Zappara | www.zappara.cf**').then(message => console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Gönderilen mesaj: ${message.content}`)).catch(console.error);
   }
 });
 
-/* Bot Sunucuya Girince */
-const girismesaj = [
-  '**TerbiyesizBOT sunucunuza eklendi!**',
-  '**TerbiyesizBOT** sunucunuzdaki insanlara kolaylıklar sağlar.',
-  'Bot Enes Onur Ata tarafından geliştirilmektedir.',
-  'Botumuzun özelliklerini öğrenmek için !yardım komutunu kullanabilirsin.',
-  '**ÖNEMLİ:** Botun kullanması için terbiyesiz kanalı açın',
-  '',
-  `**TerbiyesizBOT Resmî Discord Sunucusu** https://discord.gg/GvfuXmE`,
-  `**TerbiyesizBOT Davet Link** https://discordapp.com/api/oauth2/authorize?client_id=437270636910477313&permissions=8&scope=bot`
-]
-
-bot.on('guildCreate', guild => {
-    const generalChannel = guild.defaultChannel
-    generalChannel.sendMessage(girismesaj)
-})
