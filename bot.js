@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
-var prefix = 'zap$';
+var prefix = 't+';
 
 bot.on('message', msg => {
   if (msg.content === prefix + 'ping') {
@@ -60,9 +60,9 @@ bot.on('ready', () => {
 }) */
 
 bot.on('ready', () => {
-  bot.user.setStatus("PLAYING"); 
-  bot.user.setActivity('Zappara BOT', 'Yardım Komutu: zap$yardım', {
-    type: "PLAYING"
+  bot.user.setStatus("STREAMING"); 
+  bot.user.setActivity('Terbiyesiz BOT', 'Yardım Komutu: t+yardım', {
+    type: "STREAMING"
   }); 
 }) 
 
