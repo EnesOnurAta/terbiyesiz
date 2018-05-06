@@ -52,7 +52,7 @@ bot.on('ready', () => {
 
 bot.on('ready', () => {
   bot.user.setStatus("STREAMING"); 
-  bot.user.setActivity('Terbiyesiz BOT', 'Yardım Komutu: t+yardım', {
+  bot.user.setActivity('t+yardım | TerbiyesizBOT | 7/24 | ', {
     type: "STREAMING"
   }); 
 }) 
