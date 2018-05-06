@@ -21,15 +21,6 @@ bot.on('message', msg => {
       .setFooter("TerbiyesizBOT")
       .setTimestamp()
     msg.channel.send(embed2).then(msg.author.send(embed));
-    /*const embed = new Discord.RichEmbed()
-    .setColor("RED")
-    .setAuthor(msg.author.username, msg.author.avatarURL)
-    .addField("Modearatör Komutları", `${prefix}ban = Kişiyi sunucudan banlar`) // Falan fistan :D
-    .setDescription(`${bot.user.username} Komut Yardımı`)
-    .setFooter("Created By Özcan")
-    .setTimestamp()
-    msg.channel.send(embed);
-    */
   }
   if (msg.content === prefix + 'sunucubilgi') {
     const embed = new Discord.RichEmbed()
