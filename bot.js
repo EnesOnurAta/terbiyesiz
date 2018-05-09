@@ -51,9 +51,9 @@ bot.on('ready', () => {
 }) */
 
 bot.on('ready', () => {
-  bot.user.setStatus("STREAMING"); 
-  bot.user.setActivity('t+yardım | TerbiyesizBOT | 7/24 | ', {
-    type: "STREAMING"
+  bot.user.setStatus("WATCHING"); 
+  bot.user.setActivity('t+yardım | TerbiyesizBOT | 7/24 Porno ', {
+    type: "WATCHING"
   }); 
 }) 
 
