@@ -95,17 +95,7 @@ bot.on('message', async msg => {
 /* Otomatik Mesajlar */
 bot.on('message', msg => {
   if (msg.author.bot) return;
-  if (msg.content.toLowerCase().includes('of')) msg.reply('Of deme ah de!');
-  if (msg.content.toLowerCase().includes('ah')) msg.reply('Ah deme oh de!');
-  if (msg.content.toLowerCase().includes('oh')) msg.reply('Oh deme püf de!');
-  if (msg.content.toLowerCase().includes('püf')) msg.reply('Püf deme of de!');
-  if (msg.content.toLowerCase().includes('günaydın')) msg.reply('sana da günaydın');
-  if (msg.content.toLowerCase().includes('herkese günaydın')) msg.reply('günaydın :)');
-  if (msg.content.toLowerCase().includes('iyi geceler')) msg.reply('sana da iyi geceler');
-  if (msg.content.toLowerCase().includes('sa')) msg.reply('as');
-  if (msg.content.toLowerCase().includes('iyi akşamlar')) msg.reply('sana da iyi akşamlar');
-  if (msg.content.toLowerCase().includes('selamın aleyküm')) msg.reply('aleyküm selam');
-  if (msg.content.toLowerCase().includes('güle güle')) msg.reply('sana da güle güle');
+  if (msg.content.toLowerCase().includes('Terbiyesiz')) msg.reply('Efendim canım?');
   if (msg.content.toLowerCase().includes('eoo')) msg.reply('Neoo!');
   if (msg.content.toLowerCase().includes('seni seviyorum')) msg.reply(':heart: Bende Seni Seviyorum :heart:');
 });
@@ -202,7 +192,7 @@ bot.on('message', msg => {
     }
   });*/
 
-/* Giriş Çıkış */
+/* Giriş Çıkış
 bot.on('guildMemberAdd', member => {
   let guild = member.guild;
   let joinRole = guild.roles.find('name', 'Üye'); // Burada girişte verilcek rolu seçelim.
@@ -229,11 +219,11 @@ bot.on('guildMemberRemove', member => {
   .setTitle('📤 | Sunucudan ayrıldı | Görüşmek üzere!')
   .setTimestamp()
   channel.sendEmbed(embed); 
-});
+});*/
 
 /* Sohbet Temizleme */
 bot.on('message', msg => {
-  if (msg.content.toLowerCase() === prefix + 'temizle') {
+  if (msg.content.toLowerCase() === prefix + 'sil') {
     if (msg.channel.type === 'dm') {
       const ozelmesajuyari = new Discord.RichEmbed()
     .setColor(0xFF0000)
